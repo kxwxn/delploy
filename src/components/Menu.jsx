@@ -1,78 +1,77 @@
 import { Link } from "react-router-dom";
-import styled from "styled-components";
-
+import { styled } from "styled-components";
 const Wrapper = styled.div`
   position: fixed;
-  display: inline-block;
   top: 2rem;
-  right: 2rem;
-  z-index: 1;
+  right: 2em;
 `;
 
-const MenuLink = styled(Link)`
-  background-image: ${(props) => `url(${props.backgroundImage})`};
-  background-size: cover;
-  background-repeat: no-repeat;
-  width: 1rem;
-  height: 1rem;
-  border-radius: 50%;
-`;
+const SocialMedia = styled.a``;
 
-const Icon = styled.svg`
-  width: 1rem;
-  height: 1rem;
-`;
+const ProfileIcon = styled(Link)``;
 
+const Img = styled.img`
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+
+  /* ${(props) =>
+    props.github &&
+    `
+    border-radius:50%
+  `}
+  ${(props) =>
+    props.linkedin &&
+    `
+    border-radius:50%
+  `} */
+`;
 const DropdownMenu = styled.div`
-  display: ${(props) => (props.isOpen ? "block" : "none")};
+  display: none;
   position: absolute;
-  background: #f9f9f9;
-  padding: 12px 16px;
   z-index: 1;
 `;
+
+const Dropdown = styled.div`
+  position: relative;
+  display: inline-block;
+  &:hover ${DropdownMenu} {
+    display: block;
+  }
+`;
+
+const MenuIcon = styled.span``;
 
 export const Menu = () => {
   return (
     <Wrapper>
-      <Icon
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        strokeWidth="1.5" // 수정: stroke-width 대신 strokeWidth로 변경
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        stroke="currentColor"
-        className="w-6 h-6" // 수정: class 대신 className으로 변경
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-        />
-      </Icon>
-
-      <DropdownMenu>
-        <MenuLink
-          to="/profile"
-          id="profile"
-          backgroundImage="https://firebasestorage.googleapis.com/v0/b/portfolio-e296e.appspot.com/o/logo%2F1144760.png?alt=media&token=0fa84749-b514-4665-aeb8-148ed1b494d1"
-        />
-        <MenuLink
-          to="https:instagram.com/n0wlk"
-          id="insta"
-          backgroundImage="https://firebasestorage.googleapis.com/v0/b/portfolio-e296e.appspot.com/o/logo%2Fpng-transparent-logo-instagram-text-logo-number-thumbnail.png?alt=media&token=b0a9100b-fd1e-45a5-862f-13227b8da379"
-        />
-        <MenuLink
-          to="https://github.com/kxwxn"
-          id="github"
-          backgroundImage="https://firebasestorage.googleapis.com/v0/b/portfolio-e296e.appspot.com/o/logo%2Fpng-transparent-github-computer-icons-github-logo-monochrome-head-thumbnail.png?alt=media&token=1d5b659c-6baa-41a0-9f22-25d88a5d2084"
-        />
-        <MenuLink
-          to="https://www.linkedin.com/in/kiwon-kim-b593a8229/"
-          id="linkedIn"
-          backgroundImage="https://firebasestorage.googleapis.com/v0/b/portfolio-e296e.appspot.com/o/logo%2Fpng-transparent-in-logo-linkedin-facebook-social-media-font-awesome-icon-linkedin-blue-text-trademark-thumbnail.png?alt=media&token=542d4f1c-14b0-47e2-836e-b6ff6b00387c"
-        />
-      </DropdownMenu>
+      <Dropdown>
+        <MenuIcon>
+          <Img src="https://firebasestorage.googleapis.com/v0/b/portfolio-e296e.appspot.com/o/logo%2FPNG%2Fellipsis.png?alt=media&token=0a63db15-6b1a-4978-bef8-b1bedf23efc8" />
+        </MenuIcon>
+        <DropdownMenu>
+          <ProfileIcon to="/profile">
+            <Img src="https://firebasestorage.googleapis.com/v0/b/portfolio-e296e.appspot.com/o/logo%2FPNG%2Faccount.png?alt=media&token=2c97de21-f407-4850-b7fa-422a81f3ba4b" />
+          </ProfileIcon>
+          <SocialMedia href="https://github.com/kxwxn" target="_blank">
+            <Img src="https://firebasestorage.googleapis.com/v0/b/portfolio-e296e.appspot.com/o/logo%2FPNG%2Fgithub-logo.png?alt=media&token=111e7b3b-eae4-4041-a9b9-48cad8251492" />
+          </SocialMedia>
+          <SocialMedia
+            href="https://www.linkedin.com/in/kiwon-kim-b593a8229/"
+            target="_blank"
+          >
+            <Img src="https://firebasestorage.googleapis.com/v0/b/portfolio-e296e.appspot.com/o/logo%2FPNG%2Flinkedin.png?alt=media&token=bea7500a-642f-4a3b-9594-b84443f4a737" />
+          </SocialMedia>
+          <SocialMedia href="https://www.instagram.com/n0wlk" target="_blank">
+            <Img src="https://firebasestorage.googleapis.com/v0/b/portfolio-e296e.appspot.com/o/logo%2FPNG%2Finstagram.png?alt=media&token=5b7aa231-0137-42d0-9550-a6d850c405fc" />
+          </SocialMedia>
+          <SocialMedia href="mailto:kxwxn@icloud.com" target="_blank">
+            <Img src="https://firebasestorage.googleapis.com/v0/b/portfolio-e296e.appspot.com/o/logo%2FPNG%2Farroba.png?alt=media&token=db5b874a-8cf9-41bb-8040-863f0f5eca88" />
+          </SocialMedia>
+        </DropdownMenu>
+      </Dropdown>
     </Wrapper>
   );
 };
+
+//Profile Link 로 profile 로 갈수 있는 사람은 로그인이 된 사용자만, 아닐경우 Sign-up 페이지로 리다이렉트.

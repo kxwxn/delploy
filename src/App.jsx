@@ -10,3 +10,18 @@ function App() {
 }
 
 export default App;
+
+//-------------------------------------------------------------------------//
+
+// import { BrowserRouter as Router, Routes } from "react-router-dom";
+// import { Router as AppRouter } from "./router";
+
+// function App() {
+//   return (
+//     <Router>
+//       <AppRouter />
+//     </Router>
+//   );
+// }
+
+// export default App;
