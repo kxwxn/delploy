@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import { styled } from "styled-components";
+import { signOut } from "../services/signService";
+
 const Wrapper = styled.div`
   position: fixed;
   top: 2rem;
@@ -11,6 +13,7 @@ const SocialMedia = styled.a``;
 const ProfileIcon = styled(Link)``;
 
 const Img = styled.img`
+  display: inline-block;
   width: 2rem;
   height: 2rem;
   cursor: pointer;
@@ -42,6 +45,11 @@ const Dropdown = styled.div`
 
 const MenuIcon = styled.span``;
 
+const SignOut = styled.button`
+  border-style: none;
+  background: none;
+`;
+
 export const Menu = () => {
   return (
     <Wrapper>
@@ -68,6 +76,9 @@ export const Menu = () => {
           <SocialMedia href="mailto:kxwxn@icloud.com" target="_blank">
             <Img src="https://firebasestorage.googleapis.com/v0/b/portfolio-e296e.appspot.com/o/logo%2FPNG%2Farroba.png?alt=media&token=db5b874a-8cf9-41bb-8040-863f0f5eca88" />
           </SocialMedia>
+          <SignOut onClick={signOut}>
+            <Img src="https://firebasestorage.googleapis.com/v0/b/portfolio-e296e.appspot.com/o/logo%2Flogout.png?alt=media&token=e391595b-d66c-4a02-b7e6-6e9735fb3491" />
+          </SignOut>
         </DropdownMenu>
       </Dropdown>
     </Wrapper>
