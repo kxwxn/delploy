@@ -10,14 +10,7 @@ import { SignUP } from "./pages/SIgnUp";
 import { Profile } from "./pages/Profile";
 import { PrivateRoute } from "./components/PrivateRoute";
 import { PartyPost } from "./pages/PartyPost";
-import { M1 } from "./pages/m/M1";
-import { M2 } from "./pages/m/M2";
-import { M3 } from "./pages/m/M3";
-import { M4 } from "./pages/m/M4";
-import { M5 } from "./pages/m/M5";
-import { M6 } from "./pages/m/M6";
-import { M7 } from "./pages/m/M7";
-import { M8 } from "./pages/m/M8";
+import { M } from "./pages/M";
 
 export const router = createBrowserRouter([
   {
@@ -40,14 +33,14 @@ export const router = createBrowserRouter([
             path: "post",
             element: <PartyPost />,
           },
-          { path: "m1", element: <M1 /> },
-          { path: "m2", element: <M2 /> },
-          { path: "m3", element: <M3 /> },
-          { path: "m4", element: <M4 /> },
-          { path: "m5", element: <M5 /> },
-          { path: "m6", element: <M6 /> },
-          { path: "m7", element: <M7 /> },
-          { path: "m8", element: <M8 /> },
+          { path: "m1", element: <M title="M1" content="Hello M Genre" /> },
+          { path: "m2", element: <M title="M2" content="Hello M Genre" /> },
+          { path: "m3", element: <M title="M3" content="Hello M Genre" /> },
+          { path: "m4", element: <M title="M4" content="Hello M Genre" /> },
+          { path: "m5", element: <M title="M5" content="Hello M Genre" /> },
+          { path: "m6", element: <M title="M6" content="Hello M Genre" /> },
+          { path: "m7", element: <M title="M7" content="Hello M Genre" /> },
+          { path: "m8", element: <M title="M8" content="Hello M Genre" /> },
         ],
       },
       { path: "info", element: <Info /> },
