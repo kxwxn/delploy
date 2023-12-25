@@ -49,11 +49,10 @@ export const Party = () => {
     };
     fetchList();
   }, []);
-  console.log(mlist);
 
-  const listRender = mlist.map((item) => {
+  const listRender = mlist.map((item, index) => {
     return (
-      <CardContainer key={item.id}>
+      <CardContainer key={index}>
         <SpotifyCard link={item.title} frameBorder="0" />
         <div>{item.genre}</div>
         <div>{item.text}</div>
