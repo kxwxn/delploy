@@ -25,9 +25,21 @@ const PostLink = styled(Link)`
   font-weight: 900;
 `;
 
-const SpotifyCard = styled(Spotify)``;
 const CardContainer = styled.div`
-  border: 2px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+const SpotifyCard = styled(Spotify)``;
+
+const Genre = styled.div`
+  font-weight: 200;
+  font-size: 0.9rem;
+`;
+
+const Text = styled.div`
+  font-weight: 150;
+  font-size: 0.6rem;
 `;
 
 export const Party = () => {
@@ -56,8 +68,8 @@ export const Party = () => {
     return (
       <CardContainer key={index}>
         <SpotifyCard link={item.title} frameBorder="0" />
-        <div>{item.genre}</div>
-        <div>{item.text}</div>
+        <Genre>{item.genre}</Genre>
+        <Text>{item.text}</Text>
       </CardContainer>
     );
   });

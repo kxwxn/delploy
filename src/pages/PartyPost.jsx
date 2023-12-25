@@ -18,9 +18,8 @@ const Option = styled.option``;
 export const PartyPost = () => {
   const [spotifyUrl, setSpotifyUrl] = useState("");
   const [text, setText] = useState("");
-  const [genre, setGenre] = useState("");
+  const [genre, setGenre] = useState("m1");
   const navigate = useNavigate();
-
 
   const onTextChange = (e) => {
     setText(e.target.value);
@@ -38,7 +37,7 @@ export const PartyPost = () => {
     e.preventDefault();
     const user = auth.currentUser;
 
-    if (!user || text === "") return;
+    if (!user || text === "") return alert("Write down your thought on it !");
     try {
       const doc = await addDoc(collection(db, "M"), {
         createdAt: Date.now(),
@@ -64,9 +63,7 @@ export const PartyPost = () => {
           onChange={onUrlChange}
         />
         <Select value={genre} onChange={handleGenreChange}>
-          <Option disabled>
-            wot u saying?
-          </Option>
+          <Option disabled>wot u saying?</Option>
           <Option value="m1">Happiness</Option>
           <Option value="m2">Anger</Option>
           <Option value="m3">Sadness</Option>
