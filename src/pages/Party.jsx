@@ -24,9 +24,11 @@ const PostLink = styled(Link)`
   color: black;
   font-weight: 900;
 `;
-const Index = styled.div``;
+
 const SpotifyCard = styled(Spotify)``;
-const CardContainer = styled.div``;
+const CardContainer = styled.div`
+  border: 2px solid black;
+`;
 
 export const Party = () => {
   const [mlist, setMlist] = useState([]);
@@ -64,7 +66,6 @@ export const Party = () => {
     <Wrapper>
       <PostLink to="/party/post">archiving</PostLink>
       <Outlet />
-
       <PartyList>{listRender}</PartyList>
     </Wrapper>
   );

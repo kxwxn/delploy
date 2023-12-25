@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { styled } from "styled-components";
 import { signOut } from "../services/signService";
+import { useEffect, useState } from "react";
+import { auth } from "../firebase";
 
 const Wrapper = styled.div`
   position: fixed;
@@ -17,6 +19,11 @@ const Img = styled.img`
   width: 2rem;
   height: 2rem;
   cursor: pointer;
+
+  &.loginIcon {
+    width: 2.7rem;
+    height: 2.7rem;
+  }
 
   /* ${(props) =>
     props.github &&
@@ -50,7 +57,24 @@ const SignOut = styled.button`
   background: none;
 `;
 
+const SignIn = styled(Link)`
+  border-style: none;
+  background: none;
+  position: relative;
+  top: -5px;
+  left: -0.5rem;
+`;
+
 export const Menu = () => {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      setUser(user);
+    });
+    return unsubscribe;
+  }, []);
+
   return (
     <Wrapper>
       <Dropdown>
@@ -76,9 +100,18 @@ export const Menu = () => {
           <SocialMedia href="mailto:kxwxn@icloud.com" target="_blank">
             <Img src="https://firebasestorage.googleapis.com/v0/b/portfolio-e296e.appspot.com/o/logo%2FPNG%2Farroba.png?alt=media&token=db5b874a-8cf9-41bb-8040-863f0f5eca88" />
           </SocialMedia>
-          <SignOut onClick={signOut}>
-            <Img src="https://firebasestorage.googleapis.com/v0/b/portfolio-e296e.appspot.com/o/logo%2Flogout.png?alt=media&token=e391595b-d66c-4a02-b7e6-6e9735fb3491" />
-          </SignOut>
+          {user ? (
+            <SignOut onClick={signOut}>
+              <Img src="https://firebasestorage.googleapis.com/v0/b/portfolio-e296e.appspot.com/o/logo%2Flogout.png?alt=media&token=e391595b-d66c-4a02-b7e6-6e9735fb3491" />
+            </SignOut>
+          ) : (
+            <SignIn to="/signup">
+              <Img
+                className="loginIcon"
+                src="https://firebasestorage.googleapis.com/v0/b/portfolio-e296e.appspot.com/o/logo%2FPNG%2Flog-in.png?alt=media&token=c06ef8c4-499a-491c-8e3c-a1fef0df6ab5"
+              />
+            </SignIn>
+          )}
         </DropdownMenu>
       </Dropdown>
     </Wrapper>

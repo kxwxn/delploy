@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { onSigninSubmit, onSignupSubmit } from "../services/signService";
+import { GoogleBtn } from "../components/GoogleBtn";
 
 const Wrapper = styled.div`
   display: flex;
@@ -67,6 +68,7 @@ export const SignUP = () => {
           onChange={(e) => setSignupPassword(e.target.value)}
         />
         <SignupBtn type="submit" children="Sign up" />
+        <GoogleBtn />
       </Form>
     </Wrapper>
   );
