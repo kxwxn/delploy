@@ -15,6 +15,7 @@
     "react-dom": "^18.2.0",
     "react-draggable": "^4.4.6",
     "react-router-dom": "^6.21.0",
+    "react-spotify-embed": "^2.0.3",
     "recoil": "^0.7.7",
     "styled-components": "^6.1.1"
   },
