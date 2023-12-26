@@ -11,6 +11,7 @@ import { Profile } from "./pages/Profile";
 import { PrivateRoute } from "./components/PrivateRoute";
 import { PartyPost } from "./pages/PartyPost";
 import { M } from "./pages/M";
+import { PartyContainer } from "./components/PartyContainer";
 
 export const router = createBrowserRouter([
   {
@@ -25,14 +26,12 @@ export const router = createBrowserRouter([
         path: "party",
         element: (
           <PrivateRoute>
-            <Party />
+            <PartyContainer />
           </PrivateRoute>
         ),
         children: [
-          {
-            path: "post",
-            element: <PartyPost />,
-          },
+          { path: "/party", element: <Party /> },
+          { path: "post", element: <PartyPost /> },
           { path: "m1", element: <M title="M1" content="Hello M1 Genre" /> },
           { path: "m2", element: <M title="M2" content="Hello M2 Genre" /> },
           { path: "m3", element: <M title="M3" content="Hello M3 Genre" /> },

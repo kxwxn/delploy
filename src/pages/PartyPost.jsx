@@ -1,7 +1,7 @@
 import { React, useState, useEffect } from "react";
 import styled from "styled-components";
 import { auth, db } from "../firebase";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, updateDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 
 const Wrapper = styled.div``;
@@ -50,8 +50,6 @@ export const PartyPost = () => {
     } catch (err) {
       console.log(err);
     }
-
-    // console.log("genre", genre, "text", text, "spotify", spotifyUrl);
   };
 
   return (
