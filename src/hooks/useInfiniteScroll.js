@@ -1,46 +1,30 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
-export const useInfiniteScroll = (fetchMore) => {
-  const [initialRender, setInitialRender] = useState(true);
+export const useInfiniteScroll = (callback) => {
+  const [isFetching, setIsFetching] = useState(false);
+  const loadingRef = useRef(false);
 
   useEffect(() => {
-    const handleScroll = (fetchMore) => {
-      if (
-        window.innerHeight + document.documentElement.scrollTop !==
-        document.documentElement.offsetHeight
-      ) {
-        return;
-      }
-
-      //초기 렌더링 여부 확인
-      if (initialRender) {
-        setInitialRender(false);
-      } else {
-        fetchMore();
-      }
-    };
-
     window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [fetchMore, initialRender]);
+  useEffect(() => {
+    if (!isFetching) return;
+    callback(() => {
+      console.log("called back");
+    });
+  }, [isFetching]);
+
+  const handleScroll = () => {
+    if (
+      window.innerHeight + document.documentElement.scrollTop !==
+        document.documentElement.offsetHeight ||
+      loadingRef.current
+    )
+      return;
+    setIsFetching(true);
+  };
+
+  return [isFetching, setIsFetching, loadingRef];
 };
-
-// export const useInfiniteScroll = (fetchMore) => {
-//   useEffect(() => {
-//     const handleScroll = () => {
-//       if (
-//         window.innerHeight + document.documentElement.scrollTop !==
-//         document.documentElement.offsetHeight
-//       )
-//         return;
-//       fetchMore();
-//     };
-//     window.addEventListener("scroll", handleScroll);
-//     return () => {
-//       window.removeEventListener("scroll", handleScroll);
-//     };
-//   }, [fetchMore]);
-// };

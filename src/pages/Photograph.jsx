@@ -3,6 +3,8 @@ import { db } from "../firebase";
 import { collection, getDocs } from "firebase/firestore";
 import styled from "styled-components";
 import Draggable from "react-draggable";
+import { useRecoilState } from "recoil";
+import { PhotoAtom } from "../recoil/PhotoAtom";
 
 const Wrapper = styled.div``;
 const Frame = styled.div``;
@@ -12,7 +14,7 @@ const Photo = styled.img`
 `;
 
 export const Photograph = () => {
-  const [picture, setPicture] = useState([]);
+  const [picture, setPicture] = useRecoilState(PhotoAtom);
 
   const fetchPhoto = async () => {
     const photoCollection = collection(db, "Photo");
@@ -27,7 +29,7 @@ export const Photograph = () => {
 
   const renderPhoto = picture.map((photo, index) => {
     return (
-      <Frame>
+      <Frame key={index}>
         <Photo src={photo.uri} alt={photo.id} />
         <div>Price:{photo.price}</div>
       </Frame>
@@ -36,4 +38,3 @@ export const Photograph = () => {
 
   return <Wrapper>{renderPhoto}</Wrapper>;
 };
-
