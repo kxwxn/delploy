@@ -1,10 +1,6 @@
-import { useEffect, useState } from "react";
-import { db } from "../firebase";
-import { collection, getDocs } from "firebase/firestore";
 import styled from "styled-components";
-import Draggable from "react-draggable";
-import { useRecoilState } from "recoil";
-import { PhotoAtom } from "../recoil/PhotoAtom";
+import { useInfiniteScroll } from "../hooks/useInfiniteScroll";
+import { InView } from "react-intersection-observer";
 
 const Wrapper = styled.div``;
 const Frame = styled.div``;
@@ -12,29 +8,41 @@ const Photo = styled.img`
   width: 120px;
   height: 300px;
 `;
+const Price = styled.div``;
 
 export const Photograph = () => {
-  const [picture, setPicture] = useRecoilState(PhotoAtom);
+  const {
+    data: photo,
+    fetchNextPage,
+    hasNextPage,
+    isLoading,
+    isError,
+    error,
+  } = useInfiniteScroll("Photo", 12);
 
-  const fetchPhoto = async () => {
-    const photoCollection = collection(db, "Photo");
-    const photoSnapshot = await getDocs(photoCollection);
-    const photoList = photoSnapshot.docs.map((doc) => doc.data());
-    setPicture(photoList);
-  };
+  if (isLoading) return "Loading...";
+  if (isError) return `An error occurred: ${error.message}`;
 
-  useEffect(() => {
-    fetchPhoto();
-  }, []);
-
-  const renderPhoto = picture.map((photo, index) => {
-    return (
-      <Frame key={index}>
+  const renderPhoto = photo.pages.flatMap((page, i) =>
+    page.data.map((photo) => (
+      <Frame key={photo.id}>
         <Photo src={photo.uri} alt={photo.id} />
-        <div>Price:{photo.price}</div>
+        <Price>${photo.price}</Price>
       </Frame>
-    );
-  });
+    ))
+  );
 
-  return <Wrapper>{renderPhoto}</Wrapper>;
+  return (
+    <Wrapper>
+      {renderPhoto}
+      {hasNextPage && (
+        <InView
+          as="div"
+          onChange={(inView, entry) => inView && fetchNextPage()}
+        >
+          Loading more...
+        </InView>
+      )}
+    </Wrapper>
+  );
 };
