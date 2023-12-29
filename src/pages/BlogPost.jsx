@@ -89,7 +89,7 @@ export const BlogPost = () => {
   //  title 과 content에서 사용자가 입력한 데이터를 react query 를 이용해서 firestore에 보낸다.
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [fontSize, setFontsize] = useState("medium");
+  const [fontSize, setFontsize] = useState("");
 
   const sendPostToFirestore = async (data) => {
     await addDoc(collection(db, "Projects"), {
@@ -99,7 +99,15 @@ export const BlogPost = () => {
     });
   };
 
-  const mutation = useMutation(sendPostToFirestore);
+  const mutation = useMutation({
+    mutationFn: sendPostToFirestore,
+    onSuccess: () => {
+      console.log("success!");
+    },
+    onError: () => {
+      console.log("Failed...");
+    },
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
