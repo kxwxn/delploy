@@ -12,6 +12,7 @@ import { PrivateRoute } from "./components/PrivateRoute";
 import { PartyPost } from "./pages/PartyPost";
 import { M } from "./pages/M";
 import { PartyContainer } from "./components/PartyContainer";
+import { BlogPost } from "./pages/BlogPost";
 
 export const router = createBrowserRouter([
   {
@@ -53,6 +54,10 @@ export const router = createBrowserRouter([
         ),
       },
       { path: "signup", element: <SignUP /> },
+      {
+        path: "projects/post",
+        element: <BlogPost />,
+      },
     ],
   },
 ]);
