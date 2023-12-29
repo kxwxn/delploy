@@ -3,6 +3,7 @@ import { styled } from "styled-components";
 import { db } from "../firebase";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { useMutation } from "@tanstack/react-query";
+import { useNavigate } from "react-router-dom";
 
 const Wrapper = styled.div``;
 const Form = styled.form`
@@ -79,7 +80,6 @@ const LinkUploadBtn = styled.button`
   height: 20px;
   border: none;
 `;
-
 const Bottom = styled.div``;
 const DeployBtn = styled.button``;
 const BackBtn = styled.button``;
@@ -90,6 +90,7 @@ export const BlogPost = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [fontSize, setFontsize] = useState("");
+  const navigate = useNavigate();
 
   const sendPostToFirestore = async (data) => {
     await addDoc(collection(db, "Projects"), {
@@ -103,6 +104,9 @@ export const BlogPost = () => {
     mutationFn: sendPostToFirestore,
     onSuccess: () => {
       console.log("success!");
+      setTitle("");
+      setContent("");
+      navigate("/projects");
     },
     onError: () => {
       console.log("Failed...");
