@@ -21,7 +21,10 @@ export const useInfiniteScroll = (collectionName, numberOfItem) => {
     }
     const itemsSnapshot = await getDocs(itemsQuery);
     const lastDoc = itemsSnapshot.docs[itemsSnapshot.docs.length - 1];
-    return { data: itemsSnapshot.docs.map((doc) => doc.data()), lastDoc };
+    return {
+      data: itemsSnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })),
+      lastDoc,
+    };
   };
   //
   const { data, fetchNextPage, hasNextPage, isLoading, isError, error } =

@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { styled } from "styled-components";
-import { db } from "../firebase";
+import { auth, db } from "../firebase";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
@@ -90,10 +90,19 @@ export const BlogPost = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [fontSize, setFontsize] = useState("");
+  const [user, setUser] = useState(null);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((currentUser) => {
+      setUser(currentUser);
+    });
+    return unsubscribe;
+  }, []);
 
   const sendPostToFirestore = async (data) => {
     await addDoc(collection(db, "Projects"), {
+      author: user ? user.uid : null,
       title: data.title,
       content: data.content,
       createdAt: serverTimestamp(),
@@ -108,10 +117,12 @@ export const BlogPost = () => {
       setContent("");
       navigate("/projects");
     },
-    onError: () => {
-      console.log("Failed...");
+    onError: (err) => {
+      console.log("Failed...:", err);
     },
   });
+
+  // console.log("user", user);
 
   const handleSubmit = (e) => {
     e.preventDefault();

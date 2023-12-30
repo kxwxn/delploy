@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useInfiniteScroll } from "../hooks/useInfiniteScroll";
 import { InView } from "react-intersection-observer";
 
+
 const Wrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;

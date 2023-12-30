@@ -1,7 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import { Layout } from "./components/Layout";
 import { Landing } from "./pages/Landing";
-import { Projects } from "./pages/Projects";
 import { Photograph } from "./pages/Photograph";
 import { ThreeDSpace } from "./pages/ThreeDSpace";
 import { Party } from "./pages/Party";
@@ -13,6 +12,9 @@ import { PartyPost } from "./pages/PartyPost";
 import { M } from "./pages/M";
 import { PartyContainer } from "./components/PartyContainer";
 import { BlogPost } from "./pages/BlogPost";
+import { Thoughts } from "./pages/Projects";
+import { Article } from "./pages/Article";
+import { ThoughtsLayout } from "./components/ThoughtsLayout";
 
 export const router = createBrowserRouter([
   {
@@ -21,7 +23,15 @@ export const router = createBrowserRouter([
     children: [
       { path: "/", element: <Landing /> },
       { path: "photograph", element: <Photograph /> },
-      { path: "projects", element: <Projects /> },
+      {
+        path: "thoughts",
+        element: <ThoughtsLayout />,
+        children: [
+          { path: "/thoughts", element: <Thoughts /> },
+          { path: "post", element: <BlogPost /> },
+          { path: ":id", element: <Article /> },
+        ],
+      },
       { path: "3d-space", element: <ThreeDSpace /> },
       {
         path: "party",
@@ -41,7 +51,6 @@ export const router = createBrowserRouter([
           { path: "m6", element: <M title="M6" content="Hello M6 Genre" /> },
           { path: "m7", element: <M title="M7" content="Hello M7 Genre" /> },
           { path: "m8", element: <M title="M8" content="Hello M8 Genre" /> },
-          // content & title are props
         ],
       },
       { path: "info", element: <Info /> },
@@ -54,10 +63,6 @@ export const router = createBrowserRouter([
         ),
       },
       { path: "signup", element: <SignUP /> },
-      {
-        path: "projects/post",
-        element: <BlogPost />,
-      },
     ],
   },
 ]);

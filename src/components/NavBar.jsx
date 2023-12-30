@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import { styled } from "styled-components";
 
@@ -36,12 +35,12 @@ const PartyDrop = styled.div`
 export const NavBar = () => {
   return (
     <Wrapper>
-      <NavLink to="/">home</NavLink>
-      <NavLink to="/projects">projects</NavLink>
-      <NavLink to="/photograph">photograph</NavLink>
-      <NavLink to="/3d-space">3d-space!</NavLink>
+      <NavLink to="/">face</NavLink>
+      <NavLink to="/thoughts">Brain</NavLink>
+      <NavLink to="/photograph">eye</NavLink>
+      <NavLink to="/3d-space">body</NavLink>
       <PartyDrop>
-        <NavLink to="/party">party</NavLink>
+        <NavLink to="/party">ear</NavLink>
         <Dropdown>
           <NavLink to="/party/m1">m1</NavLink>
           <NavLink to="/party/m2">m2</NavLink>
@@ -53,7 +52,7 @@ export const NavBar = () => {
           <NavLink to="/party/m8">m8</NavLink>
         </Dropdown>
       </PartyDrop>
-      <NavLink to="/info">info</NavLink>
+      <NavLink to="/info">soul</NavLink>
     </Wrapper>
   );
 };
