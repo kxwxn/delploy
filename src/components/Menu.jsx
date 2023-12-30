@@ -8,6 +8,7 @@ const Wrapper = styled.div`
   position: fixed;
   top: 2rem;
   right: 2em;
+  z-index: 1;
 `;
 
 const SocialMedia = styled.a``;
