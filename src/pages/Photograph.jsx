@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { useInfiniteScroll } from "../hooks/useInfiniteScroll";
 import { InView } from "react-intersection-observer";
 
-
 const Wrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -16,6 +15,7 @@ const Frame = styled.div`
 const Photo = styled.img`
   width: 85%;
   height: auto;
+  cursor: pointer;
 `;
 const Mark = styled.div``;
 
@@ -37,12 +37,13 @@ export const Photograph = () => {
   });
 
   const renderPhoto = purifiedData.map((item, index) => {
+    const handleClickPhoto = () => {
+      window.open(item.uri, "_blank");
+    };
     return (
       <Frame key={index}>
-        <Photo src={item.uri} />
-        <Mark>
-          {item.price},{index}
-        </Mark>
+        <Photo src={item.uri} onClick={handleClickPhoto} />
+        <Mark>{item.price}</Mark>
       </Frame>
     );
   });

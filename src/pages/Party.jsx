@@ -19,8 +19,6 @@ export const Party = () => {
     error,
   } = useInfiniteScroll("M", 9);
 
-  console.log(spotifyData)
-
   if (isLoading) return <div>Loading...</div>;
   if (isError) return window.alert(`An error occured${error.message}`);
 
@@ -37,7 +35,7 @@ export const Party = () => {
       );
     });
   });
-  
+
   return (
     <Wrapper>
       {renderSpotify}

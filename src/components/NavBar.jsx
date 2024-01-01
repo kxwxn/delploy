@@ -6,7 +6,6 @@ const Wrapper = styled.div`
   flex-direction: column;
   text-align: left;
   position: sticky;
-  border: 0.2rem solid black;
 `;
 
 const NavLink = styled(Link)`

@@ -1,6 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
 import { Layout } from "./components/Layout";
-import { Landing } from "./pages/Landing";
 import { Photograph } from "./pages/Photograph";
 import { ThreeDSpace } from "./pages/ThreeDSpace";
 import { Party } from "./pages/Party";
@@ -15,13 +14,14 @@ import { BlogPost } from "./pages/BlogPost";
 import { Thoughts } from "./pages/Projects";
 import { Article } from "./pages/Article";
 import { ThoughtsLayout } from "./components/ThoughtsLayout";
+import { Face } from "./pages/Face";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
     children: [
-      { path: "/", element: <Landing /> },
+      { path: "/", element: <Face /> },
       { path: "photograph", element: <Photograph /> },
       {
         path: "thoughts",

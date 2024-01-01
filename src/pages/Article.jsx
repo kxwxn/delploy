@@ -16,19 +16,22 @@ const DeleteBtn = styled.button`
   width: 20px;
   height: 20px;
 `;
+const EditBtn = styled.button``;
 const BackToBrainBtn = styled(Link)``;
 
 export const Article = () => {
   const article = useRecoilValue(articleState);
 
   const handleDeleteClick = () => {};
+  const handleEditClick = () => {};
 
   return (
     <Wrapper>
       <ArticleContainer>
         <Title>{article.title}</Title>
         <DeleteBtn onClick={handleDeleteClick} />
-        <Content children={article.content} />
+        <EditBtn onClick={handleEditClick}>Edit</EditBtn>
+        <Content>{article.content}</Content>
         <BackToBrainBtn to="/thoughts">목록</BackToBrainBtn>
       </ArticleContainer>
     </Wrapper>

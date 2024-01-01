@@ -14,7 +14,6 @@ const GlobalStyle = createGlobalStyle`
 
 const Wrapper = styled.div`
   background-color: #fff8ed;
-  border: 0.1rem solid blue;
 `;
 
 function App() {

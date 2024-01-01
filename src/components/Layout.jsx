@@ -12,9 +12,7 @@ const Wrapper = styled.div`
   overflow-y: auto;
 `;
 
-const OutletFrame = styled.div`
-  border: 0.2rem solid red;
-`;
+const OutletFrame = styled.div``;
 
 export const Layout = () => {
   return (
