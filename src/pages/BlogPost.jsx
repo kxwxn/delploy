@@ -13,7 +13,6 @@ const Wrapper = styled.div`
   height: 100dvh;
   overflow: hidden;
 `;
-
 const TitleArea = styled.textarea`
   height: 50px;
   resize: none;
@@ -69,8 +68,6 @@ export const BlogPost = () => {
       console.log("Failed...:", err);
     },
   });
-
-  // console.log("user", user);
 
   const handleSubmit = (e) => {
     e.preventDefault();

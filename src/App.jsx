@@ -13,7 +13,7 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const Wrapper = styled.div`
-  background-color: #fff8ed;
+  background: none;
 `;
 
 function App() {
@@ -26,18 +26,3 @@ function App() {
 }
 
 export default App;
-
-//-------------------------------------------------------------------------//
-
-// import { BrowserRouter as Router, Routes } from "react-router-dom";
-// import { Router as AppRouter } from "./router";
-
-// function App() {
-//   return (
-//     <Router>
-//       <AppRouter />
-//     </Router>
-//   );
-// }
-
-// export default App;
