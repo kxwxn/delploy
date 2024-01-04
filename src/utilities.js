@@ -211,3 +211,5 @@ export const drawMesh = (predictions, ctx) => {
     });
   }
 };
+
+// tensorflow 에 필요한 Fn , Data.

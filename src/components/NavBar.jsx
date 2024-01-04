@@ -37,7 +37,7 @@ export const NavBar = () => {
       <NavLink to="/">face</NavLink>
       <NavLink to="/thoughts">Brain</NavLink>
       <NavLink to="/photograph">eye</NavLink>
-      <NavLink to="/3d-space">body</NavLink>
+      <NavLink to="/body">body</NavLink>
       <PartyDrop>
         <NavLink to="/party">ear</NavLink>
         <Dropdown>

@@ -15,6 +15,7 @@ import { Thoughts } from "./pages/Projects";
 import { Article } from "./pages/Article";
 import { ThoughtsLayout } from "./components/ThoughtsLayout";
 import { Face } from "./pages/Face";
+import { Body } from "./pages/Body";
 
 export const router = createBrowserRouter([
   {
@@ -32,7 +33,7 @@ export const router = createBrowserRouter([
           { path: ":id", element: <Article /> },
         ],
       },
-      { path: "3d-space", element: <ThreeDSpace /> },
+      { path: "body", element: <Body /> },
       {
         path: "party",
         element: (
