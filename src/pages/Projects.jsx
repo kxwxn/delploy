@@ -5,16 +5,28 @@ import { InView } from "react-intersection-observer";
 import { useRecoilState } from "recoil";
 import { articleState } from "../recoil/atoms/articleState";
 import { useEffect } from "react";
+import { ThreeCard } from "../components/\bThreeCard";
 
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
 `;
+
+const Header = styled.div``;
+
 const ArticleContainer = styled.div`
-  border: 2px solid black;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
 `;
+
+const Article = styled.div`
+  border: 2px solid black;
+  width: 100%;
+  height: 100%;
+`;
+
 const Title = styled(Link)`
-  font-size: 3rem;
+  font-size: 1rem;
   text-decoration: none;
   color: black;
 `;
@@ -43,25 +55,26 @@ export const Thoughts = () => {
 
   const handleArticleClick = (selectedArticle) => {
     setArticle(selectedArticle);
+    console.log(article)
   };
 
   const renderArticles = purifiedContainer.map((item, index) => {
     return (
-      <ArticleContainer key={index}>
-        <Title
-          to={`/thoughts/${item.id}`}
-          onClick={() => handleArticleClick(item)}
-        >
-          {item.title}
-        </Title>
-      </ArticleContainer>
+      <ThreeCard
+        key={index}
+        item={item}
+        to={`/thoughts/${item.id}`}
+        onClick={() => handleArticleClick(item)}
+      />
     );
   });
 
   return (
     <Wrapper>
-      <PostBtn to="/thoughts/post">POST</PostBtn>
-      {renderArticles}
+      <Header>
+        <PostBtn to="/thoughts/post">POST</PostBtn>
+      </Header>
+      <ArticleContainer>{renderArticles}</ArticleContainer>
       <InView
         as="div"
         onChange={(inview, entry) => inview && fetchNextPage()}

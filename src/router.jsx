@@ -1,7 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import { Layout } from "./components/Layout";
 import { Photograph } from "./pages/Photograph";
-import { ThreeDSpace } from "./pages/ThreeDSpace";
 import { Party } from "./pages/Party";
 import { Info } from "./pages/Info";
 import { SignUP } from "./pages/SIgnUp";
