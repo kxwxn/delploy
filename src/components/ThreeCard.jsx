@@ -2,6 +2,7 @@ import React, { useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import * as THREE from "three";
 import { styled } from "styled-components";
+import { OrbitControls } from "@react-three/drei";
 
 const Card = styled(Link)`
   text-decoration: none;
@@ -54,10 +55,6 @@ export const ThreeCard = ({ item, onClick, to }) => {
     };
 
     animate();
-
-    console.log("item", item);
-    console.log(" onClick", onClick);
-    console.log("to", `${to}`);
 
     return () => {
       if (articleRef.current) {
