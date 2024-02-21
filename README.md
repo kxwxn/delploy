@@ -17,21 +17,50 @@
 ###### 🔧 네번째 핵심 기능은 body 페이지에서 사용된 <img src="https://img.shields.io/badge/Three.js-000000?style=flat-square&logo=three.js&logoColor=ffffff"/> 라이브러리 입니다. 3D 스캔이 된 어떤 한 사람의 집의 모습입니다. 
 ###### 🔧 마지막 핵심 기능은 ear 페이지의 spotify 공유 페이지 입니다. <img src="https://img.shields.io/badge/Spotify-1DB954?style=flat-square&logo=spotify&logoColor=000000"/> open API 를 사용해서 사용자가 음악을 공유할수 있으며, 함께 글도 작성 할 수 있습니다. ( 향후 apple music도 지원 예정)
 
-
-
-
-
-
-
-
 ***
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+  ***KOR***
+**스택 선택의 이유** : React.js 를 선택한 이유는 React.js의 훅을 트리거로서 컴포넌트의 생애주기를 지배 하는 방식이 저의 머리에 있는 3차원 적인 공간에 그리기에 적절했습니다. 
 
-Currently, two official plugins are available:
+ 사용하면서 불편했던점은 React.js의 단방향적 데이터 바인딩으로 인해, 다른 컴포넌트에서 필요한 데이터를 넘겨주기에는 얽힌 실타래 처럼 되었습니다. 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-- 
+ 그래서 처음에는 useState와 사용법이 비슷한 Zustand를 사용하였지만, 서버상태와 클라이언트상태가 얽혀져버려 데이터를 담아 놓는 공간이 복잡해져 버렸습니다. 
+
+ 그래서 Tanstack-Query로 Firestore에서 받아온 데이터는 서버상태로 캐싱을 해놓고, 그 중에서 필요한 것은 Recoil로 클라이언트상태로 만들어서 문제를 해결했습니다.
+
+ 그 중에서도 클라이언트상태를 전역상태로 관리하기 위한 라이브러리로 Zustand가 아닌 Recoil로 바꾼이유는 FLUX패턴을 사용하여 비동기처리도하는 Zustand보다는 심플하게 상태만을 useState처럼 가지고 담아두고 싶었기 때문입니다. 
+
+ 이보다 간단하다는 Jotai가 있었지만, 작성당시에는 게으름 때문에 Jotai에 대해서 넘겨짚었기 때문입니다. 
+
+ 그리고 또한 Styled-components를 사용하여, 컴포넌트의 가독성을 높이고 전체적인 디렉토리의 복잡성도 낮췄다고 생각듭니다. 
+
+ Firebase를 사용한 이유는 저의 부족한 실력으로 DB를 다룰수 없기 때문에, 백엔드 서비스 프레임워크를 사용하기로 하였습니다. 
+
+ 그전에 작성했었던 React.js 와 Express.js로 웹서버간의 통신에는 성공했지만, DB의 부재로 인하여 REST API의 CRUD작성까지 도달하지는 못했습니다.
+
+***ENG***
+**Reasons for technology stack selection** : 
+
+I chose React.js because I found the way React.js hooks control the lifecycle of components to be appropriate for drawing in a 3D space in my head.
+
+One of the inconveniences I found while using React.js was that the one-way data binding made it difficult to pass data to other components, like a tangled thread.
+
+At first, I used Zustand, which is similar to useState in terms of usage, but the server state and the client state became entangled, making the space where the data was stored complex.
+
+So I solved the problem by caching the data from Firestore with Tanstack-Query as server state, and then creating the data as client state with Recoil in need of.
+
+ The reason I chose Recoil over Zustand for managing the client state as a global state is that I wanted to keep the state simple like useState, rather than Zustand, which uses the FLUX pattern for asynchronous processing. 
+
+ There was also Jotai, which is simpler than Recoil, but I overlooked it at the time because I was lazy. 
+
+ I also think that using Styled-components has improved the readability of components and reduced the overall complexity of the directory.
+
+I used Firebase because I couldn't handle the database with my lack of skills, so I decided to use a backend service framework.
+
+ I had succeeded in communicating between web servers with React.js and Express.js before, but I couldn't reach the CRUD of REST API due to the absence of a database.
+
+
+
+
+
 </div>
